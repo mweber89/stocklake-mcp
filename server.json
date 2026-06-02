@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "dev.stocklake/stocklake",
+  "title": "Stocklake — AI Stock Intelligence",
+  "description": "AI stock intelligence: prices, fundamentals, technicals, news, macro regime, and sector signals.",
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.stocklake.dev/mcp"
+    }
+  ]
+}
