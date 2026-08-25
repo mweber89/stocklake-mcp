@@ -1,5 +1,7 @@
 # Stocklake MCP — AI Stock Intelligence
 
+[![smithery badge](https://smithery.ai/badge/mweber/stocklake)](https://smithery.ai/servers/mweber/stocklake)
+
 Real-time and historical US/international stock market data, technical indicators, AI-synthesized research, insider/institutional activity, and macro/sector intelligence — delivered over the [Model Context Protocol](https://modelcontextprotocol.io).
 
 **MCP endpoint:** `https://api.stocklake.dev/mcp`
