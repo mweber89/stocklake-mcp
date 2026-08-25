@@ -1,19 +1,20 @@
 # Stocklake MCP — AI Stock Intelligence
 
-Real-time stock prices, fundamentals, technical indicators, AI-analysed news, macro regime, and sector intelligence — delivered over the [Model Context Protocol](https://modelcontextprotocol.io).
+Real-time and historical US/international stock market data, technical indicators, AI-synthesized research, insider/institutional activity, and macro/sector intelligence — delivered over the [Model Context Protocol](https://modelcontextprotocol.io).
 
-**MCP endpoint:** `https://api.stocklake.dev/mcp`  
-**Docs:** [stocklake.dev/docs](https://stocklake.dev/docs)  
+**MCP endpoint:** `https://api.stocklake.dev/mcp`
+**Docs:** [stocklake.dev/docs](https://stocklake.dev/docs)
 **Register:** [stocklake.dev/register](https://stocklake.dev/register)
 
 ---
 
-## Quickstart — Claude.ai
+## Quickstart — OAuth (Claude, ChatGPT, Perplexity)
 
-1. Open Claude.ai → Settings → Integrations
-2. Add MCP server: `https://api.stocklake.dev/mcp`
-3. Complete the OAuth flow
-4. Done — ask Claude about any stock
+1. Add MCP server `https://api.stocklake.dev/mcp` in your client (Claude.ai → Settings → Connectors; ChatGPT → Settings → Connectors → Developer Mode; Perplexity Pro/Max/Enterprise → Developer Mode → remote connector)
+2. Complete the OAuth flow — no key to copy
+3. Ask about any stock
+
+Any other MCP client that speaks OAuth (Cursor, Windsurf, VS Code, Zed, etc.) works the same way via Dynamic Client Registration — no server-side setup needed on our end.
 
 ## Quickstart — API key
 
@@ -29,20 +30,27 @@ curl -X POST https://api.stocklake.dev/mcp \
 
 ## Tools
 
+Free and guest tiers share the same 8 tools — Pro unlocks extra fields on these plus 9 additional AI-research tools. 17 tools total.
+
 | Tool | Tier | Description |
 |------|------|-------------|
-| `get_stock` | guest | Price, fundamentals, technical indicators |
-| `get_stocks` | free | Batch data for up to 10 symbols |
-| `get_stock_history` | free | Daily OHLCV up to 365 days |
-| `get_company_profile` | free | Sector, industry, description, employees, financials |
-| `search_stocks` | free | Filter by sector, country, RSI signal, recommendation |
+| `get_stock` | free | Price, fundamentals, indicators — Pro adds AI rating, per-indicator signals, relative-strength |
+| `get_stocks` | free | Batch version of `get_stock`, up to 25 symbols |
+| `get_stock_history` | free | Daily OHLCV |
+| `get_stock_news` | free | Headlines — Pro adds full AI sentiment/impact/flag-score fields |
+| `get_screener` | free | Fundamentals + technicals filter/rank, up to 25/call — Pro adds high-conviction preset |
+| `get_market_movers` | free | Top gainers/losers/most active |
+| `get_market_pulse` | free | VIX, Fear & Greed, market breadth |
 | `get_earnings_calendar` | free | Upcoming earnings dates |
-| `get_stock_rating` | pro | AI technical rating 0–10 (RSI, MACD, Bollinger, SMA) |
-| `get_stock_news` | pro | AI-analysed news with sentiment and flag score |
-| `get_sentiment_profile` | pro | Insider + institutional sentiment (SEC Form 4, Nasdaq) |
-| `get_macro_regime` | pro | AI macro regime with FRED indicators, VIX, Fear & Greed |
-| `get_market_outlook` | pro | BULLISH/NEUTRAL/BEARISH outlook with preferred sectors |
-| `get_sector_intelligence` | pro | AI sector signals for all 11 GICS sectors |
+| `get_stock_research` | pro | Full per-symbol deep dive: AI summary, news, insider activity, live signal |
+| `get_insider_activity` | pro | Insider + institutional sentiment |
+| `get_indicator_history` | pro | Up to 730 days of daily indicator snapshots |
+| `get_signals` | pro | Live AI-scored signal queue |
+| `get_news_feed` | pro | Market-wide AI news briefing |
+| `get_market_assessment` | pro | Macro regime + market outlook |
+| `get_sector_intelligence` | pro | AI sector signals for all 11 GICS sectors, incl. rotation view |
+| `get_earnings_intelligence` | pro | Post-earnings AI verdicts and risk flags |
+| `get_watchlist` | pro | Account-scoped saved symbols with live AI verdicts |
 
 ---
 
@@ -50,9 +58,9 @@ curl -X POST https://api.stocklake.dev/mcp \
 
 | Tier | Calls/day | Auth |
 |------|-----------|------|
-| Guest | 500 | No key — IP-rate-limited |
-| Free | 500 | API key (30-day, renewable) |
-| Pro | 5000 | API key or OAuth — $19.99/month |
+| Guest | 25 | No key — IP-rate-limited |
+| Free | 200 | API key, no expiry |
+| Pro | 5000 | API key or OAuth — $20.00/month |
 
 Free keys issued instantly at [stocklake.dev/register](https://stocklake.dev/register). No credit card.
 
@@ -60,9 +68,9 @@ Free keys issued instantly at [stocklake.dev/register](https://stocklake.dev/reg
 
 ## Transport
 
-- **Protocol:** MCP Streamable HTTP (`2025-11-25`)
+- **Protocol:** MCP Streamable HTTP
 - **Endpoint:** `https://api.stocklake.dev/mcp`
-- **Auth:** `Authorization: Bearer <key>` or OAuth 2.1 (Claude.ai)
+- **Auth:** `Authorization: Bearer <key>` / `X-API-Key: <key>`, or OAuth 2.1 with PKCE (Dynamic Client Registration supported — any OAuth-capable MCP client can self-register)
 - **Registry:** `dev.stocklake/stocklake` on the [MCP Registry](https://registry.modelcontextprotocol.io)
 
 ---
